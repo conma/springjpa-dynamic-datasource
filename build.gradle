@@ -1,0 +1,49 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.6.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+
+sourceSets {
+    main.resources {
+        srcDirs 'src/main/resources'
+    }
+}
+
+war {
+    baseName = 'springjpa-dynamic-datasource.war'
+
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('com.mashape.unirest:unirest-java:1.4.9')
+    compile('org.springframework.boot:spring-boot-configuration-processor')
+    compile('org.apache.commons:commons-dbcp2:2.1.1')
+    runtime('org.postgresql:postgresql')
+    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}

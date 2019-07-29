@@ -1,0 +1,11 @@
+.gradle/
+*.iml
+.idea/
+.settings/
+bin/
+build/classes/
+build/libs/exploded/
+build/resources/
+build/tmp/
+gradle/
+out/
